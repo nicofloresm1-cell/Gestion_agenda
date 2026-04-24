@@ -1,0 +1,38 @@
+{% extends 'agenda/base.html' %}
+
+{% block title %}
+  {% if object %}
+    Editar Tarea
+  {% else %}
+    Crear Tarea
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  <h2>
+    {% if object %}
+      Editar Tarea
+    {% else %}
+      Crear Tarea
+    {% endif %}
+  </h2>
+  
+  <form method="POST">
+    
+    {% csrf_token %}
+    
+    {{ form.as_p }}
+    
+    <button type="submit">
+      {% if object %}
+        Actualizar
+      {% else %}
+        Guardar
+      {% endif %}
+    </button>
+  </form>
+
+  <br>
+  <a href="{% url 'agenda:task_list' %}">Cancelar y volver</a>
+
+{% endblock %}

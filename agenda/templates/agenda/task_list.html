@@ -1,0 +1,18 @@
+{% extends 'agenda/base.html' %}
+{% load static %}
+{% block title %}Listado{% endblock %}
+{% block content %}
+<h2>Tareas</h2>
+<ul>
+  {% for task in tasks %}
+    <li>
+      <strong>{{ task.title }}</strong> - {{ task.due_date }} - {{ task.get_priority_display }}
+      {% if task.completed %} (Completada) {% endif %}
+      [<a href="{% url 'agenda:task_edit' task.pk %}">Editar</a>]
+      [<a href="{% url 'agenda:task_delete' task.pk %}">Eliminar</a>]
+    </li>
+  {% empty %}
+    <li>No hay tareas.</li>
+  {% endfor %}
+</ul>
+{% endblock %}
